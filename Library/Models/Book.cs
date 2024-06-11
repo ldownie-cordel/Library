@@ -8,5 +8,5 @@ public class Book
     public string? Publisher { get; set; }
     public DateOnly? PublishDate { get; set; }
     public string? Blurb { get; set; }
-    public long NumPages { get; set; }
+    public int? NumPages { get; set; }
 }

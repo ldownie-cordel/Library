@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Library.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Azure;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 
 
 namespace Library.Controllers
@@ -22,10 +24,18 @@ namespace Library.Controllers
         {
             _context = context;
         }
+        public enum SortableField
+        {
+            Author,
+            Title,
+            Publisher,
+            PublishDate,
+            PublishDateDesc,
+        }
 
         // GET: api/Library
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Book>>> GetBooks(int pageNumber = 1, int pageSize = 10, string? sortable = null ,string? Author = null, string? Title = null, string? Publisher = null, DateOnly? startDate = null, DateOnly? endDate = null)
+        public async Task<ActionResult<PaginationResponse>> GetBooks(int pageNumber = 1, int pageSize = 10, SortableField? sortable = null ,string? Author = null, string? Title = null, string? Publisher = null, DateOnly? startDate = null, DateOnly? endDate = null)
         {
           if (_context.Books == null)
           {
@@ -50,38 +60,49 @@ namespace Library.Controllers
                 query = query.Where(e => e.PublishDate <= endDate);
 
 
-            switch(sortable){
-
-                case "Author":
+            if (sortable.HasValue)
+            {
+            switch (sortable.Value)
+            {
+                case SortableField.Author:
                     query = query.OrderBy(x => x.Author);
-                break;
+                    break;
 
-                case "Title":
+                case SortableField.Title:
                     query = query.OrderBy(x => x.Title);
-                break;
+                    break;
 
-                case "Publisher":
+                case SortableField.Publisher:
                     query = query.OrderBy(x => x.Publisher);
-                break;
+                    break;
 
-                case "PublishDate":
+                case SortableField.PublishDate:
                     query = query.OrderBy(x => x.PublishDate);
-                break;
+                    break;
 
-                case "PublishDateDesc":
+                case SortableField.PublishDateDesc:
                     query = query.OrderByDescending(x => x.PublishDate);
-                break;
+                    break;
+            }
             }
 
 
-            // query = query.OrderBy(x => x.Author);
-           var data = await query
+            var data = await query
                            
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
-                .ToListAsync();
+                .ToArrayAsync();
 
-            return data;
+
+            var response = new PaginationResponse() {
+                Page = pageNumber,
+                PageSize = pageSize,
+                RemainingEntries = query.Count() - data.Length,
+                RemainingPages = (query.Count() -1)  / pageSize,
+                Books = data
+            };
+
+            return response;
         }
 
         // GET: api/Library/5
@@ -173,8 +194,5 @@ namespace Library.Controllers
             return (_context.Books?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
-        // private void Pagination(){
-
-        // }
     }
 }
