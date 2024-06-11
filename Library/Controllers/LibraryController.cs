@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Library.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+
 
 namespace Library.Controllers
 {
@@ -30,13 +32,51 @@ namespace Library.Controllers
               return NotFound();
           }
 
-          var clause = Author != null || Title != null || Publisher != null || startDate != null || endDate != null; 
+            var query =  _context.Books.AsQueryable();
         
-        
-           var data = await _context.Books
-                .Where(b => !clause || (b.Author == Author || b.Title == Title || b.Publisher == Publisher 
-                        || (startDate != null && endDate != null && b.PublishDate >= startDate && b.PublishDate <= endDate)))
-                .OrderBy(d => )
+            if (Author is not null)
+                query = query.Where(e => e.Author == Author);
+
+            if (Title is not null)
+                query = query.Where(e => e.Title == Title);
+            
+            if (Publisher is not null)
+                query = query.Where(e => e.Publisher == Publisher);
+            
+            if (startDate is not null)
+                query = query.Where(e => e.PublishDate >= startDate);
+            
+            if (endDate is not null)
+                query = query.Where(e => e.PublishDate <= endDate);
+
+
+            switch(sortable){
+
+                case "Author":
+                    query = query.OrderBy(x => x.Author);
+                break;
+
+                case "Title":
+                    query = query.OrderBy(x => x.Title);
+                break;
+
+                case "Publisher":
+                    query = query.OrderBy(x => x.Publisher);
+                break;
+
+                case "PublishDate":
+                    query = query.OrderBy(x => x.PublishDate);
+                break;
+
+                case "PublishDateDesc":
+                    query = query.OrderByDescending(x => x.PublishDate);
+                break;
+            }
+
+
+            // query = query.OrderBy(x => x.Author);
+           var data = await query
+                           
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
