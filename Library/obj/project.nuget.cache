@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hhXO23kqIALiZSqRc1CX5UDkCqupMbBZPyGK1c+FLQyLq1WX69VWb63RRqWcZmiIj0dEEV8nY3s/G8at3VZHSw==",
+  "dgSpecHash": "6fLlJU+3Uqn4bjULkwrZiTwr6wT3cZBKIiOFSJs1TWm/XGXmKMQ2SD/y9C123i33Js9NohM+QByDRinWR6ovdg==",
   "success": true,
-  "projectFilePath": "D:\\Devel\\Library\\Library.csproj",
+  "projectFilePath": "D:\\Devel\\personal-library\\Library\\Library.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Luke Downie\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Luke Downie\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

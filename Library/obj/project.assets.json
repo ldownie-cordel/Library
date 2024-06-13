@@ -11130,11 +11130,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Devel\\Library\\Library.csproj",
+      "projectUniqueName": "D:\\Devel\\personal-library\\Library\\Library.csproj",
       "projectName": "Library",
-      "projectPath": "D:\\Devel\\Library\\Library.csproj",
+      "projectPath": "D:\\Devel\\personal-library\\Library\\Library.csproj",
       "packagesPath": "C:\\Users\\Luke Downie\\.nuget\\packages\\",
-      "outputPath": "D:\\Devel\\Library\\obj\\",
+      "outputPath": "D:\\Devel\\personal-library\\Library\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Luke Downie\\AppData\\Roaming\\NuGet\\NuGet.Config"
