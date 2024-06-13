@@ -1,0 +1,22 @@
+{
+  "books": [
+    {
+      "id": "3478",
+      "author": "New Author",
+      "title": "New Book",
+      "pageCount": 0
+    },
+    {
+      "id": "82eb",
+      "author": "New Author",
+      "title": "New Book",
+      "pageCount": 0
+    },
+    {
+      "id": "9c44",
+      "author": "New Author",
+      "title": "New Book",
+      "pageCount": 0
+    }
+  ]
+}

@@ -3,7 +3,7 @@ using Library.Models;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
-
+//uncomment cors stuff and fix the error if you want to use the .NET backend we built instead of the JSON one
 // Add services to the container.
 
 // builder.Services.AddCors(x => {

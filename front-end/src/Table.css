@@ -1,0 +1,90 @@
+
+/* Filename - App.css*/
+body {
+    margin: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; /* Add some space above the table if needed */
+  }
+
+  
+  button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.pagination button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 14px;
+}
+
+.pagination button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
+.pagination button:hover:not([disabled]) {
+    background-color: #45a049;
+}
+
+/* Styling for the page size input */
+.size {
+    display: flex;
+    align-items: center;
+}
+
+.size input {
+    width: 60px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.size label {
+    margin-right: 10px;
+    font-size: 16px;
+}
+ 
+table {
+    border: 2px solid forestgreen;
+    width: 800px;
+    height: 200px;
+}
+ 
+th {
+    border-bottom: 1px solid black;
+}
+ 
+td {
+    text-align: center;
+}
+
+.small-text {
+        position: static;
+        text-align: center;
+        margin-top: 10px;
+    }
